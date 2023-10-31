@@ -17,7 +17,11 @@ class Contato(models.Model):
     nome = models.CharField(max_length=200)
     apelido = models.CharField(max_length=30)
     email = models.EmailField(max_length=100)
+<<<<<<< HEAD
     data_nascimento = models.DateField(verbose_name='Data de Nascenca')
+=======
+    data_nascimento = models.DateField(verbose_name='Data de Aniversário')
+>>>>>>> 58087da018313485d84c9ff69d8639d1659b32fa
     endereco = models.CharField(max_length=200, verbose_name='Endereço')
     numero = models.CharField(max_length=10)
     complemento = models.CharField(max_length=50, blank=True, null=True)
