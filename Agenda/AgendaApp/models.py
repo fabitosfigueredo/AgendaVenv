@@ -30,6 +30,7 @@ class Contato(models.Model):
     complemento = models.CharField(max_length=51, blank=True, null=True)
     cep = models.CharField(max_length=9)
     bairro = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=30, null=True)
     estado = models.CharField(max_length=2, choices=UFS, null=True)
     estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIS, null=True)
     
