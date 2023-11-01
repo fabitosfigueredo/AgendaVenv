@@ -1,6 +1,24 @@
 from django.db import models
 
 # Create your models here.
+UFS = [
+           ('SP', 'São Paulo'),
+           ('RJ', 'Rio de Janeiro'),
+           ('ES', 'Espirito Santo'),
+           ('MG', 'Minas Gerais')
+     ]
+
+
+
+class Cidade(models.Model):
+    nome = models.CharField(max_length=50)
+    uf = models.CharField(max_length=2, choices=UFS)
+
+    def __str__(self):
+        return self.nome
+
+
+
 class Contato(models.Model):
     #Opcoes do campo Estado Civil
     # primeiro valor da tupla é o que vai no banco
@@ -14,12 +32,7 @@ class Contato(models.Model):
      ('V', 'Viuvo')
      ]
 
-    UFS = [
-           ('SP', 'São Paulo'),
-           ('RJ', 'Rio de Janeiro'),
-           ('ES', 'Espirito Santo'),
-           ('MG', 'Minas Gerais')
-     ]
+
 
     nome = models.CharField(max_length=200)
     apelido = models.CharField(max_length=30)
@@ -30,7 +43,7 @@ class Contato(models.Model):
     complemento = models.CharField(max_length=51, blank=True, null=True)
     cep = models.CharField(max_length=9)
     bairro = models.CharField(max_length=100)
-    cidade = models.CharField(max_length=30, null=True)
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     estado = models.CharField(max_length=2, choices=UFS, null=True)
     estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIS, null=True)
     
@@ -41,9 +54,6 @@ class Contato(models.Model):
     class Meta:
         verbose_name = 'Pessoa'
         verbose_name_plural = 'Pessoas'
-
-
-
 
 
 
