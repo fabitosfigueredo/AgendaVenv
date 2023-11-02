@@ -56,6 +56,21 @@ class Contato(models.Model):
         verbose_name_plural = 'Pessoas'
 
 
+class Telefone(models.Model):
+    TIPOS_TELEFONE = [
+    ('RES', 'Residencial'),
+    ('COM', 'Comercial'),
+    ('REC', 'Recado'),
+    ('CEL', 'Celular')
+    ]
+    contato = models.ForeignKey(Contato, on_delete=models.CASCADE)
+    ddd = models.IntegerField()
+    numero = models.CharField(max_length=10)
+    tipo = models.CharField(max_length=3,choices=TIPOS_TELEFONE)
+    IsWhatsapp = models.BooleanField(verbose_name="Tem Whatsapp ?")
+
+    def __str__(self):
+        return f'({self.ddd}) {self.numero}'
 
 
     
