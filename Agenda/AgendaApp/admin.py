@@ -1,12 +1,12 @@
 from django.contrib import admin
-from AgendaApp.models import Contato, Cidade, Telefone
+from AgendaApp.models import Contato, Cidade, Telefone, Interesse
 
 
 # Register your models here.
 #classe para exibir telefones no cadastro de contato:
-class Telefones(admin.StackedInline):
+class Telefones(admin.TabularInline):
     model = Telefone
-
+    extra = 1
 
 class ContatoAdmin(admin.ModelAdmin):
     list_display = ['id', 'nome', 'apelido', 'data_nascimento']
@@ -17,3 +17,4 @@ class ContatoAdmin(admin.ModelAdmin):
 admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Cidade)
 admin.site.register(Telefone)
+admin.site.register(Interesse)
